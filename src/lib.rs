@@ -107,6 +107,7 @@ where
 {
     /// Like [`SslStream::new`](ssl::SslStream::new).
     pub fn new(ssl: Ssl, stream: S) -> Result<Self, ErrorStack> {
+        tracing::debug!("new: ssl: {:?}", ssl);
         ssl::SslStream::new(ssl, StreamWrapper { stream, context: 0 }).map(SslStream)
     }
 
